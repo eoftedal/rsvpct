@@ -8,8 +8,9 @@
 				<div data-role="fieldcontain">
 					<input type="submit" data-icon="check" data-theme="b" value="Ja">
 					<input type="hidden" name="answer[joining]" value="true">
-					<label for="answer_extra_">Tar med:</label>
-					<%= select( "answer", "extra", { "Ingen" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5}) %>
+					<label for="answer_extra">Tar med:</label>
+					<%= select( "answer", "extra", { "Ingen" => 0, "1" => 1, "2" => 2, "3" => 3, "4" => 4, "5" => 5}, {}, { "data-native" => "true" }) %>
+
 				</div>
 		<% end %>
 		<%= form_for([@timeslot, @answer], :remote => true) do |f| %>

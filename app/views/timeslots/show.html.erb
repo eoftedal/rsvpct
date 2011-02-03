@@ -38,8 +38,8 @@
 	<div data-role="footer" data-position="fixed">
 	  <div data-role="navbar">
 		<ul>
-			<li><a href="<%= url_for(:controller => "timeslot", :timeslot_id => @timeslot.id, :controller => "answers", :action => "new") %>" data-icon="gear" data-rel="dialog">Svar</a></li>
-			<li><a href="javascript:$.mobile.changePage ({url: '<%= url_for @timeslot %>'}, 'slide ', false, false)" data-icon="refresh">Refresh</a></li>
+			<li><a href="javascript:$.mobile.changePage ({url: '<%= url_for(:controller => "timeslot", :timeslot_id => @timeslot.id, :controller => "answers", :action => "new") %>'}, 'slide', false, false)" data-icon="gear">Svar</a></li>
+			<li><a href="javascript:$.mobile.changePage ({url: '<%= url_for @timeslot %>'}, 'none', false, false)" data-icon="refresh">Refresh</a></li>
 		</ul>
 	  </div>
 	</div>
