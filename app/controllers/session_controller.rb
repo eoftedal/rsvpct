@@ -5,7 +5,7 @@ class SessionController < ApplicationController
     consumer = get_consumer
     request_token = consumer.get_request_token( {}, {:scope => "https://www.google.com/m8/feeds/"})
     session[:oauth_secret] = request_token.secret
-    next_url = http://localhost:3000/session/create
+    next_url = "http://cageball.heroku.com/session/create"
     redirect_to request_token.authorize_url + "&oauth_callback=#{next_url}"
   end
  
