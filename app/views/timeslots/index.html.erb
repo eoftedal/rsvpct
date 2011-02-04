@@ -9,7 +9,7 @@
 					<%= link_to dateFormat(timeslot.date), timeslot  %>				
 				</h3>
 				<% if (coming_count(timeslot) > 0) %>
-						<span class="ui-li-count">+<%= coming_count(timeslot) %></span>
+						<span class="ui-li-count"><%= coming_count(timeslot) %></span>
 				<% end %>
 			  </li>
 			<% end %>
