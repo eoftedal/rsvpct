@@ -11,16 +11,27 @@ class SessionsController < ApplicationController
   end
  
   def create_oauth
+	puts "1"
     request_token = OAuth::RequestToken.new(get_consumer, params[:oauth_token], session[:oauth_secret])
+	puts "2"
     access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
-     xml = XmlSimple.xml_in(access_token.get("https://www.google.com/m8/feeds/contacts/default/full/").body)
+	puts "3"
+    xml = XmlSimple.xml_in(access_token.get("https://www.google.com/m8/feeds/contacts/default/full/").body)
+	puts "4"
     email = xml["author"].first["email"].first
+	puts "5"
     user = Player.find_or_create_by_email(email)
+	puts "6"
     user.name = xml["author"].first["name"].first
+	puts "7"
     user.oauth_token  =  access_token.token
+	puts "8"
     user.oauth_secret =  access_token.secret
+	puts "9"
      user.save
+	puts "10"
     session[:user_id] = user.id
+	puts "11"
     redirect_to :controller => 'timeslots'
   end
  
