@@ -25,7 +25,7 @@
 
 <script>
 $(function() {
-	$('form.edit_answer').bind("ajax:complete", function() {
+	$('form.edit_answer, form.new_answer').bind("ajax:complete", function() {
 		$('.ui-dialog').dialog('close')
 		$.mobile.changePage({url: '<%= url_for @timeslot %>'}, 'none', false, false)
 	});
