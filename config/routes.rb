@@ -8,7 +8,9 @@ Rsvpct::Application.routes.draw do
 
   
   resources :sessions do
-	get :create
+	collection do
+		get :create_oauth
+	end
   end
   
   # The priority is based upon order of creation:

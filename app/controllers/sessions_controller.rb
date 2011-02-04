@@ -1,16 +1,16 @@
 class SessionsController < ApplicationController
-  skip_before_filter :login_required, :only => [:new, :create]
+  skip_before_filter :login_required, :only => [:new, :create_oauth]
  
   def new
 	consumer = get_consumer
-    next_url = "http://cageball.heroku.com/sessions/create"
+    next_url = "http://cageball.heroku.com/sessions/create_oauth"
     consumer = get_consumer
     request_token = consumer.get_request_token({:oauth_callback => next_url}, {:scope => "https://www.google.com/m8/feeds/"})
     session[:oauth_secret] = request_token.secret
     redirect_to request_token.authorize_url 
   end
  
-  def create
+  def create_oauth
     request_token = OAuth::RequestToken.new(get_consumer, params[:oauth_token], session[:oauth_secret])
     access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
      xml = XmlSimple.xml_in(access_token.get("https://www.google.com/m8/feeds/contacts/default/full/").body)
