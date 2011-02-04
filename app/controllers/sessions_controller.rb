@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :login_required, :only => [:new, :create]
+  skip_before_filter :login_required, :only => [:new, :create_oauth]
  
   def new
 	consumer = get_consumer
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     redirect_to request_token.authorize_url 
   end
  
-  def create
+  def create_oauth
 	puts "Ah yeah - ze creation"
 	#logout_keeping_session!
     request_token = OAuth::RequestToken.new(get_consumer, params[:oauth_token], session[:oauth_secret])
