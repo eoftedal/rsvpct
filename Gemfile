@@ -4,6 +4,7 @@ gem 'rails', '3.0.3'
 
 gem 'oauth', '0.4.4'
 
+gem 'xml-simple'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
