@@ -11,8 +11,6 @@ class SessionsController < ApplicationController
   end
  
   def create
-	puts "Ah yeah - ze creation"
-	#logout_keeping_session!
     request_token = OAuth::RequestToken.new(get_consumer, params[:oauth_token], session[:oauth_secret])
     access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
      xml = XmlSimple.xml_in(access_token.get("https://www.google.com/m8/feeds/contacts/default/full/").body)
