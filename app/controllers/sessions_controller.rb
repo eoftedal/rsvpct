@@ -17,13 +17,17 @@ class SessionsController < ApplicationController
 		access_token = request_token.get_access_token(:oauth_verifier => params[:oauth_verifier])
 		xml = XmlSimple.xml_in(access_token.get("https://www.google.com/m8/feeds/contacts/default/full/").body)
 		email = xml["author"].first["email"].first
-		user = Player.find_or_create_by_email(email)
-		user.name = xml["author"].first["name"].first
-		#user.oauth_token  =  access_token.token
-		#user.oauth_secret =  access_token.secret
-		user.save
-		session[:user_id] = user.id
-		redirect_to :controller => 'timeslots'
+		user = Player.find_by_email(email)
+		if user 
+			#user.name = xml["author"].first["name"].first
+			#user.oauth_token  =  access_token.token
+			#user.oauth_secret =  access_token.secret
+			user.save
+			session[:user_id] = user.id
+			redirect_to :controller => 'timeslots'
+		else
+			render :text => "You are not allowed here", :status => 403
+		end
 	rescue
 		print "An error occured: ", $!, "\n" 
 		render :text => "This is an error", :status => 500
