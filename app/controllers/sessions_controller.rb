@@ -1,16 +1,16 @@
 class SessionsController < ApplicationController
-  skip_before_filter :login_required, :only => [:new, :create_oauth]
+  skip_before_filter :login_required, :only => [:new, :create]
  
   def new
 	consumer = get_consumer
-    next_url = "http://cageball.heroku.com/sessions/create_oauth"
+    next_url = "http://cageball.heroku.com/sessions/create"
     consumer = get_consumer
     request_token = consumer.get_request_token({:oauth_callback => next_url}, {:scope => "https://www.google.com/m8/feeds/"})
     session[:oauth_secret] = request_token.secret
     redirect_to request_token.authorize_url 
   end
  
-  def create_oauth
+  def create
 	puts "Ah yeah - ze creation"
 	#logout_keeping_session!
     request_token = OAuth::RequestToken.new(get_consumer, params[:oauth_token], session[:oauth_secret])
