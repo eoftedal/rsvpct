@@ -19,13 +19,10 @@ class SessionsController < ApplicationController
 		email = xml["author"].first["email"].first
 		user = Player.find_or_create_by_email(email)
 		user.name = xml["author"].first["name"].first
-		puts xml["author"]
 		#user.oauth_token  =  access_token.token
 		#user.oauth_secret =  access_token.secret
-		puts user.name
 		user.save
-		session[:user_id] = user.email
-		puts user.email
+		session[:user_id] = user.id
 		redirect_to :controller => 'timeslots'
 	rescue
 		print "An error occured: ", $!, "\n" 
