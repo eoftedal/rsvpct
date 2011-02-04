@@ -57,12 +57,12 @@ module Rsvpct
     require 'oauth/signature/rsa/sha1'
      consumer = OAuth::Consumer.new(ENV['CONSUMER_KEY'],ENV['CONSUMER_SECRET'],
     {
-    :site => "https://www.google.com",
-    :request_token_path => "/accounts/OAuthGetRequestToken",
-    :access_token_path => "/accounts/OAuthGetAccessToken",
-    :authorize_path=> "/accounts/OAuthAuthorizeToken",
-    :signature_method => "RSA-SHA1",
-    :private_key_file => ENV['PATH_TO_PRIVATE_KEY']})
+		:site => "https://www.google.com",
+		:request_token_path => "/accounts/OAuthGetRequestToken",
+		:access_token_path => "/accounts/OAuthGetAccessToken",
+		:authorize_path=> "/accounts/OAuthAuthorizeToken",
+		:signature_method => "HMAC-SHA1"
+	})
   end
   
   
