@@ -21,8 +21,10 @@ class SessionsController < ApplicationController
 		user.name = xml["author"].first["name"].first
 		#user.oauth_token  =  access_token.token
 		#user.oauth_secret =  access_token.secret
+		puts user.name
 		user.save
 		session[:user_id] = user.id
+		puts user.id
 		redirect_to :controller => 'timeslots'
 	rescue
 		print "An error occured: ", $!, "\n" 
