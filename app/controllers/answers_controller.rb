@@ -8,7 +8,6 @@ class AnswersController < ApplicationController
   def new
 	@timeslot = Timeslot.find(params[:timeslot_id])
 	@answer = @timeslot.answers.detect{|a| a.player == @user}
-	
 	if @answer == NIL
 		
 		@answer = Answer.new
@@ -30,7 +29,7 @@ class AnswersController < ApplicationController
 
 
   def create
-    @answer = Answer.new(params[:answer])
+    @answer = @timeslot.answers.detect{|a| a.player == @user} || Answer.new(params[:answer])
 	@timeslot = Timeslot.find(params[:timeslot_id])
 	@answer.timeslot = @timeslot
 	@answer.player = @user

@@ -4,6 +4,9 @@ class TimeslotsController < ApplicationController
   def index
     @timeslots = Timeslot.all
 
+	answers = Answer.find(:all)
+	answers.each {|a| a.delete }
+	
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @timeslots }
