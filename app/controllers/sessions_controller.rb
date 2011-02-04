@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
 		email = xml["author"].first["email"].first
 		user = Player.find_or_create_by_email(email)
 		user.name = xml["author"].first["name"].first
-		user.oauth_token  =  access_token.token
-		user.oauth_secret =  access_token.secret
+		#user.oauth_token  =  access_token.token
+		#user.oauth_secret =  access_token.secret
 		user.save
 		session[:user_id] = user.id
 		redirect_to :controller => 'timeslots'
