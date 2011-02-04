@@ -6,6 +6,7 @@ Rsvpct::Application.routes.draw do
   
   resources :players
   resources :sessions
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
