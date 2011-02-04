@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
  
   def new
 	consumer = get_consumer
-    next_url = "http://cageball.heroku.com/sessions/create"
+    next_url = "http://cageball.heroku.com/sessions/create_oauth"
     consumer = get_consumer
     request_token = consumer.get_request_token({:oauth_callback => next_url}, {:scope => "https://www.google.com/m8/feeds/"})
     session[:oauth_secret] = request_token.secret
