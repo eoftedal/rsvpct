@@ -23,8 +23,8 @@ class SessionsController < ApplicationController
 		#user.oauth_secret =  access_token.secret
 		puts user.name
 		user.save
-		session[:user_id] = user.id
-		puts user.id
+		session[:user_id] = user.email
+		puts user.email
 		redirect_to :controller => 'timeslots'
 	rescue
 		print "An error occured: ", $!, "\n" 

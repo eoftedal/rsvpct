@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def login_required
     if session[:user_id]
 	  puts session[:user_id]
-      @user ||= Player.find(session[:user_id])
+      @user ||= Player.find_by_email(session[:user_id])
       @access_token ||= OAuth::AccessToken.new(get_consumer, @user.oauth_token, @user.oauth_secret)
     else
       redirect_to :controller => 'sessions', :action => 'new'
