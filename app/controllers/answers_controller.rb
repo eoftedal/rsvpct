@@ -29,8 +29,8 @@ class AnswersController < ApplicationController
 
 
   def create
-    @answer = @timeslot.answers.detect{|a| a.player == @user} || Answer.new(params[:answer])
 	@timeslot = Timeslot.find(params[:timeslot_id])
+    @answer = @timeslot.answers.detect{|a| a.player == @user} || Answer.new(params[:answer])
 	@answer.timeslot = @timeslot
 	@answer.player = @user
     respond_to do |format|
