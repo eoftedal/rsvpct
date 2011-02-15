@@ -1,0 +1,45 @@
+	<div data-role="header">
+		<h1><%= dateFormat @timeslot.date %></h1>
+	</div>
+
+	<div data-role="content">
+		<ul data-role="listview" class="playerList">
+
+
+			<li data-role="list-divider">Kommer<span class="ui-li-count"><%= coming_count %></span></li>
+			<% coming().each { |a| %>
+				<li>
+					<img src="http://www.gravatar.com/avatar/<%= md5 a.player.email %>?d=identicon&s=80"/>
+					<h3><a><%= a.player.name %></a></h3>
+					<% if (a.extra > 0) %>
+						<span class="ui-li-count">+<%= a.extra %></span>
+					<% end %>
+				</li>
+			<% } %>
+			
+			<li data-role="list-divider">Kommer ikke<span class="ui-li-count"><%= not_coming.count %></span></li>
+			<% not_coming().each do |answer| %>
+				<li>
+					<img src="http://www.gravatar.com/avatar/<%= md5 answer.player.email %>?d=identicon&s=80"/>
+					<h3><a><%= answer.player.name %></a></h3>
+					<p><%= answer.comment %></p>
+				</li>
+			<% end %>
+
+			<li data-role="list-divider">Mangler svar<span class="ui-li-count"><%= no_answer.count %></span></li>
+			<% no_answer().each do |player| %>
+				<li>
+					<img src="http://www.gravatar.com/avatar/<%= md5 player.email %>?d=identicon&s=80"/>
+					<h3><a><%= player.name %></a></h3>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div data-role="footer" data-position="fixed">
+	  <div data-role="navbar">
+		<ul>
+			<li><a href="javascript:$.mobile.changePage ({url: '<%= url_for(:controller => "timeslot", :timeslot_id => @timeslot.id, :controller => "answers", :action => "new") %>'}, 'slide', false, false)" data-icon="gear">Svar</a></li>
+			<li><a href="javascript:$.mobile.changePage ({url: '<%= url_for @timeslot %>'}, 'none', false, false)" data-icon="refresh">Refresh</a></li>
+		</ul>
+	  </div>
+	</div>
