@@ -1,16 +1,14 @@
 class TimeslotsController < ApplicationController
-  # GET /timeslots
-  # GET /timeslots.xml
+
   def index
-    @timeslots = Timeslot.all
+    @timeslots = Group.find(params[:group_id]).timeslots
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @timeslots }
     end
   end
 
-  # GET /timeslots/1
-  # GET /timeslots/1.xml
+
   def show
     @timeslot = Timeslot.find(params[:id])
 
@@ -20,8 +18,7 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  # GET /timeslots/new
-  # GET /timeslots/new.xml
+
   def new
     @timeslot = Timeslot.new
 
@@ -31,16 +28,15 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  # GET /timeslots/1/edit
+
   def edit
     @timeslot = Timeslot.find(params[:id])
   end
 
-  # POST /timeslots
-  # POST /timeslots.xml
+
   def create
     @timeslot = Timeslot.new(params[:timeslot])
-
+	@timeslot.group = Group.find(params[:group_id])
     respond_to do |format|
       if @timeslot.save
         format.html { redirect_to(@timeslot, :notice => 'Timeslot was successfully created.') }
@@ -52,8 +48,7 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  # PUT /timeslots/1
-  # PUT /timeslots/1.xml
+
   def update
     @timeslot = Timeslot.find(params[:id])
 
@@ -68,8 +63,6 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  # DELETE /timeslots/1
-  # DELETE /timeslots/1.xml
   def destroy
     @timeslot = Timeslot.find(params[:id])
     @timeslot.destroy
