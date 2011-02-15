@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
 	end
 	
 	def show
-		redirect_to timeslots_path
+		redirect_to group_timeslots_path
 	end
 	
   def new

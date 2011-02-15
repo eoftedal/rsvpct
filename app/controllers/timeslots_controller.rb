@@ -1,7 +1,8 @@
 class TimeslotsController < ApplicationController
 
   def index
-    @timeslots = Group.find(params[:group_id]).timeslots
+	@group = Group.find(params[:group_id])
+    @timeslots = @group.timeslots
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @timeslots }
