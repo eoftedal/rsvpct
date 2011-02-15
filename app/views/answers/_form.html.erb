@@ -4,7 +4,7 @@
 		<h1><%= @timeslot.date %></h1>
 	</div>
 	<div data-role="content">
-		<%= form_for([@timeslot, @answer], :remote => true, :html => {"data-ajax" => "false"}) do |f| %>
+		<%= form_for([Group.find(params[:group_id]), @timeslot, @answer], :remote => true, :html => {"data-ajax" => "false"}) do |f| %>
 				<div data-role="fieldcontain">
 					<input type="submit" data-icon="check" data-theme="b" value="Ja">
 					<input type="hidden" name="answer[joining]" value="true">
@@ -13,7 +13,7 @@
 
 				</div>
 		<% end %>
-		<%= form_for([@timeslot, @answer], :remote => true) do |f| %>
+		<%= form_for([Group.find(params[:group_id]), @timeslot, @answer], :remote => true) do |f| %>
 				<div data-role="fieldcontain">
 					<input type="submit" data-icon="delete" data-theme="e" value="Nei">
 					<input type="hidden" name="answer[joining]" value="false">
@@ -27,7 +27,7 @@
 $(function() {
 	$('form.edit_answer, form.new_answer').bind("ajax:complete", function() {
 		$('.ui-dialog').dialog('close')
-		$.mobile.changePage({url: '<%= url_for @timeslot %>'}, 'none', false, false)
+		$.mobile.changePage({url: '<%= group_timeslot_url(Group.find(params[:group_id]), @timeslot) %>'}, 'none', false, false)
 	});
 });
 </script>

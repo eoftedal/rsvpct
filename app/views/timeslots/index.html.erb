@@ -6,7 +6,7 @@
 			<% @timeslots.each do |timeslot| %>
 			  <li>
 				<h3>
-					<%= link_to dateFormat(timeslot.date), timeslot  %>				
+					<%= link_to dateFormat(timeslot.date), group_timeslot_path(@group, timeslot)  %>				
 				</h3>
 				<% if (coming_count(timeslot) > 0) %>
 						<span class="ui-li-count"><%= coming_count(timeslot) %></span>

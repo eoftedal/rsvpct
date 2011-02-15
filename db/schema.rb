@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110203205123) do
+ActiveRecord::Schema.define(:version => 20110215130302) do
 
   create_table "answers", :force => true do |t|
     t.boolean  "joining"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(:version => 20110203205123) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "comment"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "players", :force => true do |t|
@@ -36,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110203205123) do
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "group_id",   :default => 1
   end
 
 end

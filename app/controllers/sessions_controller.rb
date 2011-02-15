@@ -2,6 +2,13 @@ class SessionsController < ApplicationController
   skip_before_filter :login_required, :only => [:new, :create_oauth]
  
   def new
+  
+	new_oauth
+	#session[:user_id] = 1
+	#redirect_to :controller => 'groups'
+  end 
+  
+  def new_oauth
 	consumer = get_consumer
     next_url = "http://cageball.heroku.com/sessions/create_oauth"
     consumer = get_consumer

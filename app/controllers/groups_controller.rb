@@ -1,10 +1,10 @@
 class GroupsController < ApplicationController
-	def index
-		@groups = @user.groups
+	def index		
+		@groups = @user.groups + Group.where({:player_id => @user.id})
 	end
 	
 	def show
-		redirect_to group_timeslots_url
+		redirect_to group_timeslots_url(Group.find(params[:id]))
 	end
 	
   def new
@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(params[:group])
-
+	@group.player = @user
     respond_to do |format|
       if @group.save
         format.html { redirect_to(@group, :notice => 'Group was successfully created.') }
