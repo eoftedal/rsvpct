@@ -1,4 +1,4 @@
-<%= form_for(@timeslot) do |f| %>
+<%= form_for([current_group, @timeslot]) do |f| %>
   <% if @timeslot.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@timeslot.errors.count, "error") %> prohibited this timeslot from being saved:</h2>

@@ -1,7 +1,7 @@
 class TimeslotsController < ApplicationController
 
   def index
-	@group = Group.find(params[:group_id])
+	@group = current_group
     @timeslots = @group.timeslots
     respond_to do |format|
       format.html # index.html.erb
@@ -37,10 +37,10 @@ class TimeslotsController < ApplicationController
 
   def create
     @timeslot = Timeslot.new(params[:timeslot])
-	@timeslot.group = Group.find(params[:group_id])
+	@timeslot.group = current_group
     respond_to do |format|
       if @timeslot.save
-        format.html { redirect_to(@timeslot, :notice => 'Timeslot was successfully created.') }
+        format.html { redirect_to([current_group, @timeslot], :notice => 'Timeslot was successfully created.') }
         format.xml  { render :xml => @timeslot, :status => :created, :location => @timeslot }
       else
         format.html { render :action => "new" }
@@ -55,7 +55,7 @@ class TimeslotsController < ApplicationController
 
     respond_to do |format|
       if @timeslot.update_attributes(params[:timeslot])
-        format.html { redirect_to(@timeslot, :notice => 'Timeslot was successfully updated.') }
+        format.html { redirect_to([current_group, @timeslot], :notice => 'Timeslot was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

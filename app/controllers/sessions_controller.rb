@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   skip_before_filter :login_required, :only => [:new, :create_oauth]
  
   def new
-  
 	new_oauth
 	#session[:user_id] = 1
 	#redirect_to :controller => 'groups'
@@ -26,9 +25,6 @@ class SessionsController < ApplicationController
 		email = xml["author"].first["email"].first
 		user = Player.find_by_email(email)
 		if user 
-			#user.name = xml["author"].first["name"].first
-			#user.oauth_token  =  access_token.token
-			#user.oauth_secret =  access_token.secret
 			user.save
 			session[:user_id] = user.id
 			redirect_to :controller => 'timeslots'

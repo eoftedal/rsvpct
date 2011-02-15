@@ -4,6 +4,7 @@ Rsvpct::Application.routes.draw do
 	resources :timeslots do
 		resources :answers
 	end
+	resources :memberships
   end
   
   resources :players

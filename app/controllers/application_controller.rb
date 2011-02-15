@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
 		:signature_method => "HMAC-SHA1"
 	})
   end
+  
+  	def current_group 
+		Group.find(params[:group_id])
+	end
 end
