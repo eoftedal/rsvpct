@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
 		if user 
 			user.save
 			session[:user_id] = user.id
-			redirect_to :controller => 'timeslots'
+			redirect_to :controller => 'groups'
 		else
 			render :text => "You are not allowed here", :status => 403
 		end
