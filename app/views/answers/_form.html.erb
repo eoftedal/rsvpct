@@ -26,7 +26,6 @@
 <script>
 $(function() {
 	$('form.edit_answer, form.new_answer').bind("ajax:complete", function() {
-		//$('.ui-dialog').dialog('close')
 		$.mobile.changePage({url: '<%= group_timeslot_url(current_group, @timeslot) %>'}, 'none', false, false)
 	});
 });

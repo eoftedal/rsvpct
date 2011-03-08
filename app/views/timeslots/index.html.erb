@@ -19,10 +19,9 @@
         <div data-role="footer" data-position="fixed">
           <div data-role="navbar">
                 <ul>
-                        <li><a href="<%= new_group_timeslot_path(@group) %>">Ny trening</a></li>
-                        <li><a href="<%= group_memberships_path(@group) %>">Spillere</a></li>
+                        <li><a href="<%= new_group_timeslot_path(@group) %>" data-icon="plus">Ny trening</a></li>
+                        <li><a href="<%= group_memberships_path(@group) %>" data-icon="grid">Spillere</a></li>
 						<li><a href="javascript:$.mobile.changePage ({url: '/'}, 'none', false, false)" data-icon="refresh">Refresh</a></li>
-                        <li><a href="#">Logg ut</a></li>
                 </ul>
           </div>
 		  
