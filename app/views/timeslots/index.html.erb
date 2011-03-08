@@ -6,10 +6,10 @@
 			<% @timeslots.each do |timeslot| %>
 			  <li>
 				<h3>
-					<%= link_to dateFormat(timeslot.date), group_timeslot_path(@group, timeslot)  %>				
+					<%= link_to dateFormat(timeslot.date), group_timeslot_answers_path(@group, timeslot)  %>				
 				</h3>
-				<% if (coming_count(timeslot) > 0) %>
-						<span class="ui-li-count"><%= coming_count(timeslot) %></span>
+				<% if (timeslot.coming_count() > 0) %>
+						<span class="ui-li-count"><%= timeslot.coming_count %></span>
 				<% end %>
 			  </li>
 			<% end %>
@@ -21,7 +21,7 @@
                 <ul>
                         <li><a href="<%= new_group_timeslot_path(@group) %>" data-icon="plus">Ny trening</a></li>
                         <li><a href="<%= group_memberships_path(@group) %>" data-icon="grid">Spillere</a></li>
-						<li><a href="javascript:$.mobile.changePage ({url: '/'}, 'none', false, false)" data-icon="refresh">Refresh</a></li>
+						<li><a href="javascript:$.mobile.changePage ({url: '<%= group_path(@group) %>'}, 'none', false, false)" data-icon="refresh">Refresh</a></li>
                 </ul>
           </div>
 		  

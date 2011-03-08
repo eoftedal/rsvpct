@@ -1,5 +1,8 @@
 class AnswersController < ApplicationController
 
+  def index
+	@timeslot = Timeslot.find(params[:timeslot_id])
+  end
   
   def show
 	@timeslot = Timeslot.find(params[:timeslot_id])

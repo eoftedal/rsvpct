@@ -12,11 +12,7 @@ class TimeslotsController < ApplicationController
 
   def show
     @timeslot = Timeslot.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @timeslot }
-    end
+	redirect_to(group_timeslot_answers_path(current_group, @timeslot))
   end
 
 
